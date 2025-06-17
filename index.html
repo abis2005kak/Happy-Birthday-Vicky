@@ -36,6 +36,40 @@
       <span style="font-style: italic; color: rgb(0,0,0); margin-top: 3px !important; ">Open the gift, cutie:3</span>
     </p>
     <script>
+    // Main script remains similar; further changes are made in a.js if needed.
+    const body = document.querySelector("body");
+    const swalst = Swal.mixin({
+      timer: 2300,
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      timerProgressBar: true,
+      imageHeight: 90,
+    });
+    audio = new Audio("" + linkmp3.src);
+    ftganti = 0;
+    fungsi = 0;
+    fungsiAwal = 0;
+    deffotostiker = fotostiker.src;
+    Content.style = "opacity:1;margin-top:16vh";
+    const swals = Swal.mixin({
+      allowOutsideClick: false,
+      cancelButtonColor: "#FF0040",
+      imageHeight: 80,
+    });
+
+    document.getElementById("kadoIn").onclick = function () {
+      if (fungsiAwal == 0) {
+        audio.play();
+        fungsiAwal = 1;
+        kadoIn.style =
+          "transition:all .8s ease;transform:scale(10);opacity:0";
+        wallpaper.style = "transform: scale(1.5);";
+        ket.style = "display:none";
+        setTimeout(initengahan, 300);
+        setTimeout(inipesan, 500);
+      }
+    };
+
      async function inipesan() {
       var { value: nama } = await swals.fire({
         title: "What's your beautiful name?",
@@ -54,7 +88,35 @@
         inipesan();
       }
     }
-    </script>
+   var tanya = "How about we celebrate your birthday in style?";
+    var opstanya = "Your choice is:";
+    var tompositif = "Absolutely, let’s celebrate! 🎉";
+    var tomnegatif = "Maybe another time";
+
+    async function pertanyaan() {
+      var { isConfirmed: prtanya } = await swals.fire({
+        title: nama + ", " + tanya,
+        text: "" + opstanya,
+        imageUrl: "" + fotostiker5.src,
+        showCancelButton: true,
+        confirmButtonText: "" + tompositif,
+        cancelButtonText: "" + tomnegatif,
+      });
+      if (prtanya) {
+        pesanwhatsapp = "Yes " + nama + ", let the birthday magic begin!";
+        menuju();
+      } else {
+        pesanwhatsapp = nama + ", don't miss out on the birthday fun!";
+        await swalst.fire({
+          title: "" + kataditolak.innerHTML,
+          timer: 2000,
+          imageUrl: "" + stikerditolak.src,
+        });
+        menuju();
+      }
+    }
+  </script>
+  <script src="a.js"></script>
     <div class="kumpulanstiker" style="margin-top: 95px;">
       <!-- Stickers for Content -->
       <img src="https://media.tenor.com/4Ijycn6xFzUAAAAj/mochi-blue-roses.gif" id="fotostiker" />
@@ -110,72 +172,10 @@
     </div>
   </div>
 
-  <script>
-    // Main script remains similar; further changes are made in a.js if needed.
-    const body = document.querySelector("body");
-    const swalst = Swal.mixin({
-      timer: 2300,
-      allowOutsideClick: false,
-      showConfirmButton: false,
-      timerProgressBar: true,
-      imageHeight: 90,
-    });
-    audio = new Audio("" + linkmp3.src);
-    ftganti = 0;
-    fungsi = 0;
-    fungsiAwal = 0;
-    deffotostiker = fotostiker.src;
-    Content.style = "opacity:1;margin-top:16vh";
-    const swals = Swal.mixin({
-      allowOutsideClick: false,
-      cancelButtonColor: "#FF0040",
-      imageHeight: 80,
-    });
-
-    document.getElementById("kadoIn").onclick = function () {
-      if (fungsiAwal == 0) {
-        audio.play();
-        fungsiAwal = 1;
-        kadoIn.style =
-          "transition:all .8s ease;transform:scale(10);opacity:0";
-        wallpaper.style = "transform: scale(1.5);";
-        ket.style = "display:none";
-        setTimeout(initengahan, 300);
-        setTimeout(inipesan, 500);
-      }
-    };
-
+ 
     
 
-    var tanya = "How about we celebrate your birthday in style?";
-    var opstanya = "Your choice is:";
-    var tompositif = "Absolutely, let’s celebrate! 🎉";
-    var tomnegatif = "Maybe another time";
-
-    async function pertanyaan() {
-      var { isConfirmed: prtanya } = await swals.fire({
-        title: nama + ", " + tanya,
-        text: "" + opstanya,
-        imageUrl: "" + fotostiker5.src,
-        showCancelButton: true,
-        confirmButtonText: "" + tompositif,
-        cancelButtonText: "" + tomnegatif,
-      });
-      if (prtanya) {
-        pesanwhatsapp = "Yes " + nama + ", let the birthday magic begin!";
-        menuju();
-      } else {
-        pesanwhatsapp = nama + ", don't miss out on the birthday fun!";
-        await swalst.fire({
-          title: "" + kataditolak.innerHTML,
-          timer: 2000,
-          imageUrl: "" + stikerditolak.src,
-        });
-        menuju();
-      }
-    }
-  </script>
-  <script src="a.js"></script>
+    
 </body>
 
 </html>
